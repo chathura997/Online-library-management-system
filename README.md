@@ -11,7 +11,7 @@ This is a Spring Boot application for managing an online library.
 - Java
 - Spring Boot
 - Maven
-- PostgreSQL (or your DB)
+- PostgreSQL
 
 ## Getting Started
 
