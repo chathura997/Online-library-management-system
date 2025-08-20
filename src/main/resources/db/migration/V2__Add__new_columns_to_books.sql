@@ -1,0 +1,2 @@
+ALTER TABLE books
+ADD COLUMN category VARCHAR(50) NOT NULL;
