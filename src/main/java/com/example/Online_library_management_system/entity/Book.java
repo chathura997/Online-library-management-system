@@ -1,5 +1,6 @@
 package com.example.Online_library_management_system.entity;
 
+import com.example.Online_library_management_system.enums.BookCategory;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
@@ -74,6 +75,10 @@ public class Book {
     @Size(max = 500, message = "Cover image URL cannot exceed 500 characters")
     private String coverImageUrl;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", length = 50)
+    private BookCategory category;
+
     @Column(name = "is_available", nullable = false)
     @Builder.Default
     private Boolean isAvailable = true;
@@ -88,7 +93,7 @@ public class Book {
     @Column(name = "created_by")
     private String createdBy;
 
-    @Column(name = "updated_by")
+    @Column( name = "updated_by")
     private String updatedBy;
 
 }
