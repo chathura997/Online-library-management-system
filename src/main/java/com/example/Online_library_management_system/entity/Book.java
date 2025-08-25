@@ -2,7 +2,6 @@ package com.example.Online_library_management_system.entity;
 
 import com.example.Online_library_management_system.enums.BookCategory;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,7 +20,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+@Builder
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Book {
@@ -95,5 +94,4 @@ public class Book {
 
     @Column( name = "updated_by")
     private String updatedBy;
-
 }
