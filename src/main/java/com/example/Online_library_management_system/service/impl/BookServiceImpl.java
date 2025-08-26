@@ -8,6 +8,9 @@ import com.example.Online_library_management_system.repository.BookRepository;
 import com.example.Online_library_management_system.service.BookService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -27,5 +30,16 @@ public class BookServiceImpl implements BookService {
         Book savedBook = bookRepository.save(book);
 
         return bookMapper.toDTO(savedBook);
+    }
+
+    @Override
+    public List<BookResponseDTO> getAllBooks() {
+        List<Book> bookList = bookRepository.findAll();
+
+        List<BookResponseDTO> bookResponseDTOS = bookList.stream()
+                .map(bookMapper::toDTO)
+                .collect(Collectors.toList());
+
+        return bookResponseDTOS;
     }
 }
