@@ -36,10 +36,9 @@ public class BookServiceImpl implements BookService {
     public List<BookResponseDTO> getAllBooks() {
         List<Book> bookList = bookRepository.findAll();
 
-        List<BookResponseDTO> bookResponseDTOS = bookList.stream()
+        return  bookList.stream()
                 .map(bookMapper::toDTO)
                 .collect(Collectors.toList());
 
-        return bookResponseDTOS;
     }
 }
