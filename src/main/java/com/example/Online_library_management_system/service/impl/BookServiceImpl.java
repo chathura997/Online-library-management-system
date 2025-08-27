@@ -39,6 +39,21 @@ public class BookServiceImpl implements BookService {
         return  bookList.stream()
                 .map(bookMapper::toDTO)
                 .collect(Collectors.toList());
+    }
 
+    @Override
+    public BookResponseDTO getBookById(Long id) {
+
+        Book book = bookRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Book not found id: "+id));
+        return bookMapper.toDTO(book);
+    }
+
+    @Override
+    public void delete(Long id) {
+        if(!bookRepository.existsById(id)){
+            throw new RuntimeException("Book not found id: "+id);
+        }
+        bookRepository.deleteById(id);
     }
 }
