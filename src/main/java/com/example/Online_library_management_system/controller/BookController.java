@@ -20,19 +20,19 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<BookResponseDTO> createBook(@Valid @RequestBody BookRequestDTO requestDto) {
-        BookResponseDTO responseDto = bookService.CreateBook(requestDto);
+        BookResponseDTO responseDto = bookService.create(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
     }
 
     @GetMapping
-    public ResponseEntity<List<BookResponseDTO>> getAllBooks() {
-        List<BookResponseDTO> books = bookService.getAllBooks();
+    public ResponseEntity<List<BookResponseDTO>> getAll() {
+        List<BookResponseDTO> books = bookService.getAll();
         return ResponseEntity.ok(books);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<BookResponseDTO> getBookById(@PathVariable Long id) {
-        BookResponseDTO bookResponseDTO = bookService.getBookById(id);
+        BookResponseDTO bookResponseDTO = bookService.getById(id);
         return ResponseEntity.ok(bookResponseDTO);
     }
 
