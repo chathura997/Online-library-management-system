@@ -3,6 +3,7 @@ package com.example.Online_library_management_system.service.impl;
 import com.example.Online_library_management_system.dto.request.BookRequestDTO;
 import com.example.Online_library_management_system.dto.response.BookResponseDTO;
 import com.example.Online_library_management_system.entity.Book;
+import com.example.Online_library_management_system.exceptions.EntityNotFoundException;
 import com.example.Online_library_management_system.mapper.BookMapper;
 import com.example.Online_library_management_system.repository.BookRepository;
 import com.example.Online_library_management_system.service.BookService;
@@ -44,14 +45,14 @@ public class BookServiceImpl implements BookService {
     public BookResponseDTO getById(Long id) {
 
         Book book = bookRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("Book not found id: "+id));
+                .orElseThrow(()->new EntityNotFoundException("Book",id));
         return bookMapper.toDTO(book);
     }
 
     @Override
     public void delete(Long id) {
         if(!bookRepository.existsById(id)){
-            throw new RuntimeException("Book not found id: "+id);
+            throw new EntityNotFoundException("Book",id);
         }
         bookRepository.deleteById(id);
     }
